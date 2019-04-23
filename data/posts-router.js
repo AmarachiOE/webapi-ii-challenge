@@ -67,7 +67,28 @@ router.get("/:id", async (req, res) => {
 */
 
 // POST ==================
-router.post("/", (req, res) => {});
+router.post("/", (req, res) => {
+  const newPost = req.body;
+  console.log("Request Body: ", newPost);
+  if (!newPost.title || !newPost.contents) {
+    res
+      .status(400)
+      .json({ error: "Please provide title and contents for the post." });
+  } else {
+    posts
+      .insert(newPost)
+      .then(post => {
+        res.status(201).json(post);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({
+            error: "There was an error while saving the post to the database."
+          });
+      });
+  }
+});
 
 // DELETE ==================
 router.delete("/:id", (req, res) => {});
