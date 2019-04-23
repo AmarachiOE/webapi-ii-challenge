@@ -14,12 +14,57 @@ router.get("/", (req, res) => {
       res.status(200).json(posts);
     })
     .catch(err => {
-      res.status(500).json({ error: "The posts information could not be retrieved." });
+      res
+        .status(500)
+        .json({ error: "The posts information could not be retrieved." });
     });
 });
 
 // GET POST BY ID ==================
-router.get("/:id", (req, res) => {});
+// be specific with conditions bc for this case if the post doesn't exists then an empty array will be returned
+// if (post.length == 0 || post === undefined)...
+// or if (post.length > 0)...
+router.get("/:id", (req, res) => {
+  const postId = req.params.id;
+  posts
+    .findById(postId)
+    .then(post => {
+      if (post.length == 0 || post === undefined) {
+        res
+          .status(404)
+          .json({ error: "The post with the specified ID does not exist." });
+      } else {
+        res.status(200).json(post);
+      }
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: "The post information could not be retrieved." });
+    });
+});
+
+// GET POST BY ID LUIS EXAMPLE ===========
+/*
+router.get("/:id", async (req, res) => {
+    try {
+      const post = await posts.findById(req.params.id);
+  
+      if (post.length > 0 ) {
+        res.status(200).json(post);
+      } else {
+        res.status(404).json({ message: "Post not found" });
+      }
+    } catch (error) {
+      // log error to database
+      console.log(error);
+      res.status(500).json({
+        message: "Error retrieving the post"
+      });
+    }
+  });
+
+*/
 
 // POST ==================
 router.post("/", (req, res) => {});
