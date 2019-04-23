@@ -3,5 +3,5 @@
 const server = require("./server");
 
 server.listen(5000, () => {
-    console.log('\n*** Girl! Server Running on http://localhost:5000 ***\n');
-  });
+  console.log("\n*** Girl! Server Running on http://localhost:5000 ***\n");
+});
