@@ -1,33 +1,74 @@
 .App {
   text-align: center;
+  background: white;
+  width: 80%;
+  margin: 5% auto 0;
+  padding: 20px;
+  border-radius: 5px;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.App h1 {
+  background: lightcyan;
+  padding: 40px 20px; 
+  margin-top: 0;
+  box-shadow: 1px 2px 3px lightgrey;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.postsList-container {
+  margin: 50px auto 0;
+  /* border: 1px solid black; */
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
+  height: 1250px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+}
+.postsList-container .each-post {
+  max-width: 22%;
+  height: auto;
+  box-shadow: 1px 2px 3px lightgrey;
+  padding: 2%;
+  margin: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+.post-form-container {
+  margin-bottom: 5%;
+  background: lightcyan;
+  padding: 20px; 
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px lightgrey;
+
+}
+.post-form-container h3 {
+  margin-top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.post-form-container .post-form {
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
 }
+
+
+.post-form-container .post-form input {
+  width: 35%;
+  height: 30px;
+  padding-left: 12px;
+  font-size: 1rem;
+
+  }
+
+  .post-form-container .post-form button {
+    /* width: 35%; */
+    height: 35px;
+    font-size: 1rem;
+    border: none;
+    box-shadow: 1px 2px 3px lightgrey;
+
+  
+    }
+

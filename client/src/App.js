@@ -3,6 +3,7 @@ import axios from "axios";
 
 import "./App.css";
 import PostsList from "./components/PostsList";
+import PostForm from "./components/PostForm";
 
 class App extends React.Component {
   constructor() {
@@ -20,11 +21,24 @@ class App extends React.Component {
     });
   }
 
+  // POST post
+  addPost = (e, post) => {
+    e.preventDefault();
+    axios.post("http://localhost:5000/api/posts", post).then(res => {
+      console.log(res.data);
+      this.setState({ posts: res.data });
+    })
+    .catch(err => {
+      console.log(err.resolve);
+    })
+  };
+
   render() {
     return (
       <div className="App">
-        <h2>Welcome to React App</h2>
+        <h1>Welcome to the List of Posts</h1>
         <PostsList posts={this.state.posts}/>
+        <PostForm addPost={this.addPost}/>
       </div>
     );
   }
