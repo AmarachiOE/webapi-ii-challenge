@@ -81,17 +81,33 @@ router.post("/", (req, res) => {
         res.status(201).json(post);
       })
       .catch(err => {
-        res
-          .status(500)
-          .json({
-            error: "There was an error while saving the post to the database."
-          });
+        res.status(500).json({
+          error: "There was an error while saving the post to the database."
+        });
       });
   }
 });
 
 // DELETE ==================
-router.delete("/:id", (req, res) => {});
+router.delete("/:id", (req, res) => {
+  const postId = req.params.id;
+  posts
+    .remove(postId)
+    .then(post => {
+      if (post) {
+        res.status(204).end();
+      } else {
+        res
+          .status(404)
+          .json({ error: "The post with the specified ID does not exist." });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: "The post could not be removed"
+      });
+    });
+});
 
 // PUT ==================
 router.get("/:id", (req, res) => {});
