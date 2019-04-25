@@ -4,6 +4,7 @@ const posts = require("./db");
 
 const router = express.Router();
 
+
 // url begins with /api/posts
 
 // GET ALL POSTS ==================
@@ -11,7 +12,9 @@ router.get("/", (req, res) => {
   posts
     .find()
     .then(posts => {
-      res.status(200).json(posts);
+      res.status(200).json({
+        compliment: process.env.COMPLIMENT,
+        posts});
     })
     .catch(err => {
       res
